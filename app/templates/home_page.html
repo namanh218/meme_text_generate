@@ -1,0 +1,310 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href='/Users/nguyennamanh/dockerapp/flask-app/app/static/css/style.css'>
+<div class="container">
+    <div class="loader">Loading...</div>
+    <div class="row">
+        <div style='margin-top:20px' class='center-div'>
+       
+        {% if (f ==undefined) %}
+            <img src ="./static/ai.jpg" alt="image load" height='780' width='680'  class="image" />
+
+        <div style='margin-left:20px; display:flex; justify-content: center; flex-direction: column'>   
+            <img src ="./static/daq.jpg" alt="image load" height='100' width='300' class='logo'/>
+            <form action = "/" method = "POST"  enctype = "multipart/form-data" class ="submit_img">
+                <input type = "file" name = "file" class="btn btn-outline-light submit-input"/>
+                <button type="submit" style='margin-left:20px' class="btn btn-outline-light ">Submit</button>
+            </form>
+    
+            
+    
+            <form action="{{ url_for('upload_file')}}" method ='GET' class='predict-box'>
+                <input type="text" id="fname" name="fname" class='text-input'/><br>
+                <input type="hidden" id="fname" name="img" value={{f}} /><br>
+                <input value="Predict" type="submit" style='display:inline-block'  class="btn btn-outline-light btn-predict"/><br>
+            </form>
+        </div>     
+        {% endif %}    
+        {% if (f !=undefined and not a) %}
+            <img src ="./static/{{f}}" alt="image load" height='780' width='680'  class="image" />
+
+        <div style='margin-left:20px; display:flex; justify-content: center; flex-direction: column'>
+            <img src ="./static/daq.jpg" alt="image load" height='100' width='300' class='logo'/>  
+            <form action = "/" method = "POST"  enctype = "multipart/form-data" class ="submit_img">
+                <input type = "file" name = "file" class="btn btn-outline-light submit-input"/>
+                <button type="submit" style='margin-left:20px' class="btn btn-outline-light ">Submit</button>
+            </form>
+    
+            
+    
+            <form action="{{ url_for('upload_file')}}" method ='GET' class='predict-box'>
+                <input type="text" id="fname" name="fname" class='text-input'/><br>
+                <input type="hidden" id="fname" name="img" value={{f}} /><br>
+                <input value="Predict" type="submit" style='display:inline-block'  class="btn btn-outline-light btn-predict"/><br>
+            </form>
+        </div>     
+        {% endif %}
+        {% if a %}    
+        <div style='position:absolute; max-width: 390px; z-index:1'>
+            <div style ='display:flex'>  
+            {% if (f !=undefined) %}
+                 <img src ="./static/{{f}}" alt="image load" height='780' width='680'  class="image" />
+                 <div style='margin-left:20px;display:flex; justify-content: center; flex-direction: column; z-index: 1;'>
+                    <img src ="./static/daq.jpg" alt="image load" height='100' width='300' class='logo'/> 
+                    <form action = "/" method = "POST"  enctype = "multipart/form-data" class ="submit_img">
+                        <input type = "file" name = "file" class="btn btn-outline-light submit-input"/>
+                        <button type="submit" style='margin-left:20px' class="btn btn-outline-light ">Submit</button>
+                    </form>
+            
+                    
+            
+                    <form action="{{ url_for('upload_file')}}" method ='GET' class='predict-box'>
+                        <input type="text" id="fname" name="fname" class='text-input'/><br>
+                        <input type="hidden" id="fname" name="img" value={{f}} /><br>
+                        <input value="Predict" type="submit" style='display:inline-block'  class="btn btn-outline-light btn-predict"/><br>
+                    </form>
+                </div>
+             {% endif %}
+            
+                <div class='text-meme'>
+            
+                    {% if (a.split('|')|length<=1) %}
+                        <input value="{{a.split('|')[0]}}" style='margin-top: 20px;margin-left:20px;font-size:40px' class="test" />
+                    {% endif %}    
+                    {% if (a.split('|')|length==2) %}
+                        <input value="{{a.split('|')[0]}}" style='margin-top:20px;margin-left:20px;font-size:40px' class="test-2" />
+                        <input value="{{a.split('|')[1]}}" style='margin-top:600px;margin-left:20px;font-size:40px' class="test-2" />
+
+                    {% endif %} 
+                    {% if (a.split('|')|length==3) %}
+                        <input value="{{a.split('|')[0]}}" style='margin-top:120px;margin-left:80px;font-size:35px' class="test" />
+                        <input value="{{a.split('|')[1]}}" style='margin-top:5px;margin-left:350px;font-size:35px' class="test" />
+                        <input value="{{a.split('|')[2]}}" style='margin-top:360px;margin-left:10px;font-size:40px' class="test" />
+                    {% endif %} 
+                    {% if (a.split('|')|length==4) %}
+                        <input value="{{a.split('|')[0]}}" style='margin-top:40px;margin-left:15px;font-size:40px' class="test" />
+                        <input value="{{a.split('|')[1]}}" style='margin-top:80px;margin-left:15px;font-size:40px' class="test" />
+                        <input value="{{a.split('|')[2]}}" style='margin-top:120px;margin-left:15px;font-size:40px' class="test" />
+                        <input value="{{a.split('|')[3]}}" style='margin-top:120px;margin-left:15px;font-size:40px' class="test" />                
+                        {% endif %} 
+                </div>
+            </div> 
+        </div> 
+
+
+        {% endif %}
+        </div>
+    </div>
+</div>
+
+<script src="/static/js/jquery-3.4.1.min.js"></script>
+<script src="/static/js/index.js"></script>
+<style>
+
+.center-div{
+    width:100%;
+    margin-right:auto;
+    margin-left:auto;
+    display: flex;
+    justify-content: space-between;
+
+}
+.submit-input{
+    width:80%;
+}
+.image{
+    z-index: 0;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: 20px;
+    object-fit: cover;
+    border: solid 2px white;
+    border-radius: 5px;    
+}
+.logo{
+    object-fit: cover;
+    border: solid 2px white;
+    border-radius: 5px;
+    margin-left: 60px;
+}
+.submit_img{
+    display:flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 520px;
+}
+.text-input{
+    width: 80%;
+    background-color: transparent;
+    border: solid 1px white;
+    border-radius: 3px;
+    display:inline-block
+
+}
+input[type=text] {
+  color:white
+}
+body{
+    background: linear-gradient(57deg, rgba(61, 61, 61, 0) 0%, rgba(61, 61, 61, 0.04) 20%,rgba(228, 228, 228, 0.04) 20%, rgba(228, 228, 228, 0.04) 100%),linear-gradient(184deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.04) 74%,rgba(167, 167, 167, 0.04) 74%, rgba(167, 167, 167, 0.04) 100%),linear-gradient(143deg, rgba(10, 10, 10, 0.04) 0%, rgba(10, 10, 10, 0.04) 43%,rgba(169, 169, 169, 0.04) 43%, rgba(169, 169, 169, 0.04) 100%),linear-gradient(8deg, rgba(238, 238, 238, 0.04) 0%, rgba(238, 238, 238, 0.04) 96%,rgba(162, 162, 162, 0.04) 96%, rgba(162, 162, 162, 0.04) 100%),linear-gradient(90deg, rgb(199, 66, 19),rgb(209, 183, 108));
+}
+label{
+    color: white;
+}
+.text-meme{
+    position:absolute;
+    top:0
+}
+.predict-box{
+    display: flex;
+    height: 40px;
+    justify-content: space-between;
+    width:520px;
+}
+
+p{
+ 
+  margin: 15px 0;
+  padding: 0 5px;
+  font-family: impact;
+  font-size: 2.5em;
+  text-transform: uppercase;
+  color: white;
+  letter-spacing: 1px;
+  text-shadow:2px 2px 0 #000,
+  -2px -2px 0 #000,
+  2px -2px 0 #000,
+  -2px 2px 0 #000,
+  0px 2px 0 #000,
+  2px 0px 0 #000,
+  0px -2px 0 #000,
+  -2px 0px 0 #000,
+  2px 2px 5px #000;
+}
+
+.test {
+    width: 840px;
+    height: 100px;
+    border: none;
+    font-family: impact;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 1px;
+    text-shadow:2px 2px 0 #000,
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    0px 2px 0 #000,
+    2px 0px 0 #000,
+    0px -2px 0 #000,
+    -2px 0px 0 #000,
+    2px 2px 5px #000;
+    background-color: rgba(0, 0, 0, 0);
+}
+.test-2{
+    width: 800px;
+    height: 50px;
+    border: none;
+    font-family: impact;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 1px;
+    text-shadow:2px 2px 0 #000,
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    0px 2px 0 #000,
+    2px 0px 0 #000,
+    0px -2px 0 #000,
+    -2px 0px 0 #000,
+    2px 2px 5px #000;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.loader {
+    position: fixed;
+    top: 6%;
+    left: 65%;
+    z-index: 999;   
+    color: #ffffff;
+    font-size: 90px;
+    text-indent: -9999em;
+    overflow: hidden;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    margin: 72px auto;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation: load6 1.7s infinite ease, round 1.7s infinite ease;
+    animation: load6 1.7s infinite ease, round 1.7s infinite ease;
+    display: none;
+  }
+  @-webkit-keyframes load6 {
+    0% {
+      box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+    }
+    5%,
+    95% {
+      box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+    }
+    10%,
+    59% {
+      box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
+    }
+    20% {
+      box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em, -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em, -0.749em -0.34em 0 -0.477em;
+    }
+    38% {
+      box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em, -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em, -0.82em -0.09em 0 -0.477em;
+    }
+    100% {
+      box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+    }
+  }
+  @keyframes load6 {
+    0% {
+      box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+    }
+    5%,
+    95% {
+      box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+    }
+    10%,
+    59% {
+      box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
+    }
+    20% {
+      box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em, -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em, -0.749em -0.34em 0 -0.477em;
+    }
+    38% {
+      box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em, -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em, -0.82em -0.09em 0 -0.477em;
+    }
+    100% {
+      box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+    }
+  }
+  @-webkit-keyframes round {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes round {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  
+
+</style> 
