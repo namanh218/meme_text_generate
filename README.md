@@ -16,6 +16,8 @@ How was i do that:
 With get data: I downloaded data json from medium, but i need to crawl data from imgflip.com thank to beautifulsoup.
 Clean data: For this thing, I had to delete some no meaningful sentences, delete some  noise symbol. I already crawled new data, but they not clean and I had to fix it manually.
 Prepare: I seperated labels with all the letters and symbols in my sentences and beside transformed all text to number. Using pad_senquence all text. Labels now became a np.array. Below is my results after seperating text. From 700 samples now I got 30000 samples to train, I split train data to test and validation.
+
+
 Build model:
 ---
 For text, I think LSTM is good for text and also optimizer by RMSProp, with loss by RMsprop. My model has 256 layer size over 900000 parameters and output using softmax activation.
